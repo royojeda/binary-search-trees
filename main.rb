@@ -14,7 +14,9 @@ class Node
   end
 end
 
-a = Node.new(1)
-b = Node.new(2)
-
-p a <=> b
+class Tree
+  def initialize(arr)
+    @arr = arr
+    @root = nil
+  end
+end
