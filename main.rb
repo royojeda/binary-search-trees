@@ -40,7 +40,27 @@ class Tree
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
+
+  def insert(value, current_node = root)
+    if value == current_node.data
+      puts 'Value already exists.'
+    elsif value < current_node.data
+      if current_node.left.nil?
+        current_node.left = Node.new(value)
+      else
+        insert(value, current_node.left)
+      end
+    else
+      if current_node.right.nil?
+        current_node.right = Node.new(value)
+      else
+        insert(value, current_node.right)
+      end
+    end
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+# a = Tree.new(Array.new(100) { rand(1..100) })
+a.insert(999)
 a.pretty_print
