@@ -1,6 +1,6 @@
-include Comparable
-
 class Node
+  include Comparable
+
   attr_reader :data
   attr_accessor :left, :right
 
