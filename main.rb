@@ -1,8 +1,7 @@
 class Node
   include Comparable
 
-  attr_reader :data
-  attr_accessor :left, :right
+  attr_accessor :left, :right, :data
 
   def <=>(other)
     data <=> other.data
@@ -72,15 +71,15 @@ class Tree
       elsif current_node.right.nil?
         return current_node.left
       else
-        p find_next(current_node.right)
-        gets
+        current_node.data = find_next(current_node.right)
+        current_node.right = delete(current_node.data, current_node.right)
       end
     end
     current_node
   end
 
   def find_next(current_node)
-    return current_node if current_node.left.nil?
+    return current_node.data if current_node.left.nil?
 
     find_next(current_node.left)
   end
@@ -89,5 +88,5 @@ end
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a.insert(999)
 a.pretty_print
-a.delete(4)
+a.delete(8)
 a.pretty_print
