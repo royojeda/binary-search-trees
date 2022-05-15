@@ -60,35 +60,11 @@ class Tree
   end
 
   def delete(value, current_node = root)
-    if value < current_node.data
-      if value == current_node.left.data
-        if current_node.left.left.nil? && current_node.left.right.nil?
-          current_node.left = nil
-        elsif !current_node.left.left.nil? && current_node.left.right.nil?
-          current_node.left = current_node.left.left
-        elsif current_node.left.left.nil? && !current_node.left.right.nil?
-          current_node.left = current_node.left.right
-        end
-      else
-        delete(value, current_node.left)
-      end
-    elsif value > current_node.data
-      if value == current_node.right.data
-        if current_node.right.left.nil? && current_node.right.right.nil?
-          current_node.right = nil
-        elsif !current_node.right.left.nil? && current_node.right.right.nil?
-          current_node.right = current_node.right.left
-        elsif current_node.right.left.nil? && !current_node.right.right.nil?
-          current_node.right = current_node.right.right
-        end
-      else
-        delete(value, current_node.right)
-      end
-    end
+
   end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a.insert(999)
-a.delete(324)
+# a.delete(324)
 a.pretty_print
