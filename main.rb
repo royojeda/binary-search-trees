@@ -85,7 +85,7 @@ class Tree
   end
 
   def find(value, current_node = root)
-    return nil if root.nil?
+    return nil if current_node.nil?
 
     if value < current_node.data
       find(value, current_node.left)
@@ -100,4 +100,4 @@ end
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a.insert(999)
 a.pretty_print
-a.pretty_print(a.find(9))
+p a.find(10)
