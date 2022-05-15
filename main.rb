@@ -58,9 +58,25 @@ class Tree
       end
     end
   end
+
+  def delete(value, current_node = root)
+    if value < current_node.data
+      if value == current_node.left.data
+        current_node.left = nil if current_node.left.left.nil? && current_node.left.right.nil?
+      else
+        delete(value, current_node.left)
+      end
+    elsif value > current_node.data
+      if value == current_node.right.data
+        current_node.right = nil if current_node.right.left.nil? && current_node.right.right.nil?
+      else
+        delete(value, current_node.right)
+      end
+    end
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-# a = Tree.new(Array.new(100) { rand(1..100) })
 a.insert(999)
+a.delete(7)
 a.pretty_print
