@@ -72,15 +72,22 @@ class Tree
       elsif current_node.right.nil?
         return current_node.left
       else
-        # delete Node with two children
+        p find_next(current_node.right)
+        gets
       end
     end
     current_node
+  end
+
+  def find_next(current_node)
+    return current_node if current_node.left.nil?
+
+    find_next(current_node.left)
   end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a.insert(999)
 a.pretty_print
-a.delete(5)
+a.delete(4)
 a.pretty_print
