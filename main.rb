@@ -60,11 +60,27 @@ class Tree
   end
 
   def delete(value, current_node = root)
+    return nil if current_node.nil?
 
+    if value < current_node.data
+      current_node.left = delete(value, current_node.left)
+    elsif value > current_node.data
+      current_node.right = delete(value, current_node.right)
+    else
+      if current_node.left.nil?
+        return current_node.right
+      elsif current_node.right.nil?
+        return current_node.left
+      else
+        # delete Node with two children
+      end
+    end
+    current_node
   end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a.insert(999)
-# a.delete(324)
+a.pretty_print
+a.delete(5)
 a.pretty_print
