@@ -95,9 +95,30 @@ class Tree
       current_node
     end
   end
+
+  def level_order(queue = [], &proc)
+    return if root.nil?
+
+    unless block_given?
+      arr = []
+      proc = proc { |node| arr.push(node.data) }
+    end
+
+    queue.push(root)
+    until queue.empty?
+      current_node = queue.shift
+      proc.call(current_node)
+      queue.push(current_node.left) unless current_node.left.nil?
+      queue.push(current_node.right) unless current_node.right.nil?
+    end
+
+    return arr unless block_given?
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a.insert(999)
 a.pretty_print
-p a.find(10)
+# p a.find(9)
+a.level_order { |node| puts node.data }
+p a.level_order
