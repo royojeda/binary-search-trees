@@ -159,9 +159,22 @@ class Tree
 
     return arr unless block_given?
   end
+
+  def height(node)
+    return 0 if node.nil?
+
+    a = height(node.left) + 1
+    b = height(node.right) + 1
+    a >= b ? a : b
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+a.insert(999)
+a.insert(24)
+a.insert(25)
+a.insert(22)
+a.insert(21)
+a.insert(20)
 a.pretty_print
-a.postorder { |node| puts "#{node.data} asd" }
-p a.postorder
+p a.height(a.find(67))
