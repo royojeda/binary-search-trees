@@ -144,9 +144,24 @@ class Tree
 
     return arr unless block_given?
   end
+
+  def postorder(current_node = root, &proc)
+    return if current_node.nil?
+
+    unless block_given?
+      arr = []
+      proc = proc { |node| arr.push(node.data) }
+    end
+
+    postorder(current_node.left, &proc) unless current_node.left.nil?
+    postorder(current_node.right, &proc) unless current_node.right.nil?
+    proc.call(current_node)
+
+    return arr unless block_given?
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 a.pretty_print
-a.preorder { |node| puts "#{node.data} asd" }
-p a.preorder
+a.postorder { |node| puts "#{node.data} asd" }
+p a.postorder
