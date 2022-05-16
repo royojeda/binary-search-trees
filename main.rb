@@ -177,14 +177,20 @@ class Tree
       depth(node, current_node.right) + 1
     end
   end
+
+  def balanced?(current_node = root)
+    return false if (height(current_node.left) - height(current_node.right)).abs > 1
+
+    true
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 a.insert(999)
 a.insert(24)
-a.insert(25)
+# a.insert(25)
 a.insert(22)
-a.insert(21)
-a.insert(20)
+# a.insert(21)
+# a.insert(20)
 a.pretty_print
-p a.depth(a.find(8))
+p a.balanced?
