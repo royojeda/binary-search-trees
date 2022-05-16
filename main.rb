@@ -167,6 +167,16 @@ class Tree
     b = height(node.right) + 1
     a >= b ? a : b
   end
+
+  def depth(node, current_node = root)
+    if current_node == node
+      1
+    elsif node < current_node
+      depth(node, current_node.left) + 1
+    else
+      depth(node, current_node.right) + 1
+    end
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
@@ -177,4 +187,4 @@ a.insert(22)
 a.insert(21)
 a.insert(20)
 a.pretty_print
-p a.height(a.find(67))
+p a.depth(a.find(8))
