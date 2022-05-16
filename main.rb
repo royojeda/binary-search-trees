@@ -1,15 +1,28 @@
 require_relative 'node'
 require_relative 'tree'
 
-a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-a.insert(999)
-a.insert(24)
-a.insert(25)
-a.insert(22)
-a.insert(21)
-a.insert(20)
-a.pretty_print
-p a.balanced?
-a.rebalance
-a.pretty_print
-p a.balanced?
+tree = Tree.new(Array.new(15) { rand(1..100) })
+system 'clear'
+tree.pretty_print
+
+puts "\nBalanced?: #{tree.balanced?}\n\n"
+
+puts "Level Order: #{tree.level_order}\n\n"
+puts "Preorder: #{tree.preorder}\n\n"
+puts "Postorder: #{tree.postorder}\n\n"
+puts "Inorder: #{tree.inorder}\n\n"
+
+5.times { tree.insert(rand(100..1000)) }
+tree.pretty_print
+
+puts "\nBalanced?: #{tree.balanced?}\n\n"
+
+tree.rebalance
+tree.pretty_print
+
+puts "\nBalanced?: #{tree.balanced?}\n\n"
+
+puts "Level Order: #{tree.level_order}\n\n"
+puts "Preorder: #{tree.preorder}\n\n"
+puts "Postorder: #{tree.postorder}\n\n"
+puts "Inorder: #{tree.inorder}\n\n"
