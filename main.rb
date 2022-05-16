@@ -114,11 +114,24 @@ class Tree
 
     return arr unless block_given?
   end
+
+  def inorder(current_node = root, &proc)
+    return if current_node.nil?
+
+    unless block_given?
+      arr = []
+      proc = proc { |node| arr.push(node.data) }
+    end
+
+    proc.call(current_node)
+    inorder(current_node.left, &proc) unless current_node.left.nil?
+    inorder(current_node.right, &proc) unless current_node.right.nil?
+
+    return arr unless block_given?
+  end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-# a.insert(999)
 a.pretty_print
-# p a.find(9)
-a.level_order { |node| puts node.data }
-p a.level_order
+a.inorder { |node| puts "#{node.data} asd" }
+p a.inorder
